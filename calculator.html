@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <div class="container">
+        <div class="display">
+            <input type="text" placeholder="0" id="screen" disabled>
+        </div>
+        <div class="btns">
+            <div class="row1">
+                <button id="ce" onclick="ce()">CE</button>
+                <button onclick="fact()">x!</button>
+                <button onclick="numbers('(')">(</button>
+                <button onclick="numbers(')')">)</button>
+                <button onclick="per()">%</button>
+                <button id="ac" onclick="ac()">AC</button>
+            </div>
+            <div class="row2">
+                <button onclick="sin()">sin</button>
+                <button onclick="pi()">&pi;</button>
+                <button onclick="numbers('7')">7</button>
+                <button onclick="numbers('8')">8</button>
+                <button onclick="numbers('9')">9</button>
+                <button onclick="numbers('/')">&divide</button>
+            </div>
+            <div class="row3">
+                <button onclick="cos()">cos</button>
+                <button onclick="log()">log</button>
+                <button onclick="numbers('4')">4</button>
+                <button onclick="numbers('5')">5</button>
+                <button onclick="numbers('6')">6</button>
+                <button onclick="numbers('*')">&#215</button>
+            </div>
+            <div class="row4">
+                <button onclick="tan()">tan</button>
+                <button onclick="square()">&#x221A</button>
+                <button onclick="numbers('1')">1</button>
+                <button onclick="numbers('2')">2</button>
+                <button onclick="numbers('3')">3</button>
+                <button onclick="numbers('-')">-</button>
+            </div>
+            <div class="row5">
+                <button onclick="E()">e</button>
+                <button onclick="power()">x<sup>y</sup></button>
+                <button onclick="numbers('0')">0</button>
+                <button onclick="numbers('.')">.</button>
+                <button id="equal" onclick="equal()">=</button>
+                <button onclick="numbers('+')">+</button>
+            </div>
+        </div>
+
+    </div>
+    
+    <script>
+        var scn=document.getElementById("screen")
+        var operator=0
+        var point=0
+        function numbers(num){
+            var x=num
+    if(x=='.'){
+        if(point==0){
+            scn.value+=x
+            point=1
+        }
+        else{
+        return false
+    }
+    }
+    else if(x=='+' ||x=='-' ||x=='/' ||x=='*'){
+        if(operator==0){
+            point=0
+            scn.value+=x
+            operator=1
+        }
+        else{
+        return false
+    }
+    }
+    else{
+        scn.value+=x
+        operator=0
+    }
+        }
+        function equal(){
+                  try{
+                     scn.value = eval(scn.value)
+                    }
+                 catch(err){
+                     scn.value="Error"
+                     }
+        }
+        function ac(){
+            scn.value=null
+        }
+        function ce(){
+            scn.value=scn.value.slice(0,-1)
+        }
+        function sin(){
+            scn.value=Math.sin(scn.value)
+        }
+        function cos(){
+            scn.value=Math.cos(scn.value)
+        }
+        function tan(){
+            scn.value=Math.tan(scn.value)
+        }
+        function power(){
+            scn.value=Math.pow(scn.value,2)
+        }
+        function square(){
+            scn.value=Math.sqrt(scn.value,2)
+        }
+        function log(){
+            scn.value=Math.log(scn.value)
+        }
+        function pi(){
+            scn.value=3.14159265359
+        }
+        function E(){
+            scn.value=2.71828182846
+        }
+        function fact(){            
+            var a=1
+            for(var i=1;i<=scn.value;i++){
+                a=a*i
+            }
+            scn.value=a
+        }
+        function per(){
+            scn.value=scn.value*(1/100)
+        }
+    </script>
+    
+</body>
+</html>
